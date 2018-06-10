@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <a id="login" href="#">Log in with lichess</a>
+        <script>
+            const state = Math.random().toString(36).substring(2);
+            const redirectUri = 'http://pepellou.github.io/joeli/stats.html';
+            const authorizationUri = 'https://oauth.lichess.org/oauth/authorize?response_type=code&client_id=9K7pFsBexTMYIQ5H&redirect_uri=' + redirectUri + '&scope=game:read%20preference:read&state=' + state;
+
+            $(function() {
+                $('#login').click(function() {
+                    console.log('Trying to login');
+                    document.location = authorizationUri;
+                });
+            });
+        </script>
+    </body>
+</html>

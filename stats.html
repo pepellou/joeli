@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <script>
+            const redirectUri = 'http://pepellou.github.io/joeli/stats.html';
+            $(function() {
+                var queryString = document.location.search;
+                var params = queryString.substring(1).split('&');
+                var code = '';
+                for (var i = 0; i < params.length; i++) {
+                    var parts = params[i].split('=');
+                    if (parts[0] == 'code') {
+                        code = parts[1];
+                    }
+                }
+                console.log('We\'re here');
+                console.log('code = ' + code);
+
+                $.post(
+                    'https://oauth.lichess.org/oauth',
+                    { code: code, redirect_uri: redirectUri },
+                    function() {
+                        console.log('success');
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>
